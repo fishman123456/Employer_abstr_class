@@ -14,10 +14,10 @@ class Animal
 {
 public:
 	//кличка животного
-	char Title[20];
+	string Title;
 	//простой конструктор
-	Animal(char* t) {
-		strcpy(Title, t);
+	Animal(string t) {
+		Title = t;
 	}
 	//чисто виртуальная функция
 	virtual void speak() = 0;
@@ -26,7 +26,7 @@ public:
 class Frog : public Animal
 {
 public:
-	Frog(char* Title) : Animal(Title) {};
+	Frog(string Title) : Animal(Title) {};
 	virtual void speak() {
 		cout << Title << " say " << "\'kwa-kwa\'\n";
 	}
@@ -34,7 +34,7 @@ public:
 class Dog : public Animal
 {
 public:
-	Dog(char* Title) : Animal(Title) {};
+	Dog(string Title) : Animal(Title) {};
 	virtual void speak() {
 		cout << Title << " say " << "\'gav-gav\'\n";
 	}
@@ -43,7 +43,7 @@ public:
 class Cat : public Animal
 {
 public:
-	Cat(char* Title) : Animal(Title) {};
+	Cat(string Title) : Animal(Title) {};
 	virtual void speak() {
 		cout << Title << " say " << "\'myau-myau\'\n";
 	}
@@ -52,7 +52,7 @@ public:
 class Lion : public Cat
 {
 public:
-	Lion(char* Title) : Cat(Title) {};
+	Lion(string Title) : Cat(Title) {};
 	/*virtual void speak(){
 	cout<<Title<<" say "<<"\'rrr-rrr\'\n";
 	}*/
@@ -60,41 +60,21 @@ public:
 	cout<<Title<<" say "<<"\'rrr-rrr\'\n";
 	return 0;
 	}*/
-	virtual void speak(int When) {
+	virtual void speak() {
 		cout << Title << " say " << "\'rrr-rrr\'\n";
 	}
 };//класс собака
-class Dog : public Animal
+void main()
 {
-public:
-	Dog(char* Title) : Animal(Title) {};
-	virtual void speak() {
-		cout << Title << " say " << "\'gav-gav\'\n";
-	}
-};
-//класс кошка
-class Cat : public Animal
-{
-public:
-	Cat(char* Title) : Animal(Title) {};
-	virtual void speak() {
-		cout << Title << " say " << "\'myau-myau\'\n";
-	}
-};
-//класс лев
-class Lion : public Cat
-{
-public:
-	Lion(char* Title) : Cat(Title) {};
-	/*virtual void speak(){
-	cout<<Title<<" say "<<"\'rrr-rrr\'\n";
-	}*/
-	/*virtual int speak(){
-	cout<<Title<<" say "<<"\'rrr-rrr\'\n";
-	return 0;
-	}*/
-	virtual void speak(int When) {
-		cout << Title << " say " << "\'rrr-rrr\'\n";
-	}
-};
-
+	//объявим массив указателей на базовый класс Animal
+	//и сразу его заполним указателями, создавая объекты
+	//cписок животных
+	Animal* animals[4] = 
+	{
+	new Dog("Bob"),
+	new Cat("Murka"),
+	new Frog("Vasya"),
+	new Lion("King") };
+	for (int k = 0; k < 4; k++)
+	animals[k]->speak();
+}
