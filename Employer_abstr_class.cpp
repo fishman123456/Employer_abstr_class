@@ -53,17 +53,10 @@ class Lion : public Cat
 {
 public:
 	Lion(string Title) : Cat(Title) {};
-	/*virtual void speak(){
-	cout<<Title<<" say "<<"\'rrr-rrr\'\n";
-	}*/
-	/*virtual int speak(){
-	cout<<Title<<" say "<<"\'rrr-rrr\'\n";
-	return 0;
-	}*/
 	virtual void speak() {
 		cout << Title << " say " << "\'rrr-rrr\'\n";
 	}
-};//класс собака
+};
 void main()
 {
 	//объявим массив указателей на базовый класс Animal
